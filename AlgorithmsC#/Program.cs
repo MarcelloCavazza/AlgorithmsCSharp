@@ -29,24 +29,21 @@ static int BinarySearch(int minSize, int maxSize, int targetValue, int[] array)
         }
         return BinarySearch((int)middleValue, maxSize, targetValue, array);
     }
-    else
+    decimal leftValue = middleValue - 0.5m;
+    decimal rightValue = middleValue + 0.5m;
+    if (array[(int)leftValue] == targetValue)
     {
-        decimal leftValue = middleValue - 0.5m;
-        decimal rightValue = middleValue + 0.5m;
-        if (array[(int)leftValue] == targetValue)
-        {
-            return (int)leftValue;
-        }
-        if (array[(int)rightValue] == targetValue)
-        {
-            return (int)rightValue;
-        }
-        else if (array[(int)leftValue - 1] > targetValue)
-        {
-            return BinarySearch(minSize, (int)rightValue, targetValue, array);
-        }
-        return BinarySearch((int)rightValue, maxSize, targetValue, array);
+        return (int)leftValue;
     }
+    if (array[(int)rightValue] == targetValue)
+    {
+        return (int)rightValue;
+    }
+    else if (array[(int)leftValue - 1] > targetValue)
+    {
+        return BinarySearch(minSize, (int)rightValue, targetValue, array);
+    }
+    return BinarySearch((int)rightValue, maxSize, targetValue, array);
 }
 
 watch.Stop();
