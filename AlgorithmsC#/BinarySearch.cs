@@ -17,8 +17,11 @@ namespace AlgorithmsC_
             {
                 arr[i] = i + 1;
             }
+            Console.WriteLine("Say a target");
+            int target = int.Parse(Console.ReadLine());
+
             var watch = Stopwatch.StartNew();
-            int target = 45670, targetIndex = -1, currentSize = arraySize;
+            int currentSize = arraySize;
             int result = BinarySearchMethod(0, currentSize, target, arr);
             Console.WriteLine(result);
 
@@ -29,37 +32,20 @@ namespace AlgorithmsC_
 
         public int BinarySearchMethod(int minSize, int maxSize, int targetValue, int[] array)
         {
-            decimal indexToCompare = -1;
+            if (targetValue == maxSize) return maxSize - 1;
+            if (targetValue == minSize) return minSize - 1;
+            if (minSize >= maxSize) return -1;
 
-            decimal middleValue = (minSize + maxSize) / 2;
-
-            if (middleValue % 1 == 0)
+            int middleValue = (minSize + maxSize) / 2;
+            if (array[middleValue - 1] == targetValue)
             {
-                if (array[(int)middleValue - 1] == targetValue)
-                {
-                    return (int)middleValue - 1;
-                }
-                else if (array[(int)middleValue - 1] > targetValue)
-                {
-                    return BinarySearchMethod(minSize, (int)middleValue, targetValue, array);
-                }
-                return BinarySearchMethod((int)middleValue, maxSize, targetValue, array);
+                return middleValue - 1;
             }
-            decimal leftValue = middleValue - 0.5m;
-            decimal rightValue = middleValue + 0.5m;
-            if (array[(int)leftValue] == targetValue)
+            else if (array[middleValue - 1] > targetValue)
             {
-                return (int)leftValue;
+                return BinarySearchMethod(minSize, middleValue, targetValue, array);
             }
-            if (array[(int)rightValue] == targetValue)
-            {
-                return (int)rightValue;
-            }
-            else if (array[(int)leftValue - 1] > targetValue)
-            {
-                return BinarySearchMethod(minSize, (int)rightValue, targetValue, array);
-            }
-            return BinarySearchMethod((int)rightValue, maxSize, targetValue, array);
+            return BinarySearchMethod(middleValue, maxSize, targetValue, array);
         }
 
     }
