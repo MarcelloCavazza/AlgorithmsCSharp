@@ -22,7 +22,7 @@ namespace AlgorithmsC_
 
             var watch = Stopwatch.StartNew();
             int currentSize = arraySize;
-            int result = BinarySearchMethod(0, currentSize, target, arr);
+            int result = BinarySearchMethod(0, currentSize - 1, target, arr);
             Console.WriteLine(result);
 
             watch.Stop();
@@ -32,19 +32,14 @@ namespace AlgorithmsC_
 
         public int BinarySearchMethod(int minSize, int maxSize, int targetValue, int[] array)
         {
-            if (targetValue == maxSize) return maxSize - 1;
-            if (targetValue == minSize) return minSize - 1;
             if (minSize >= maxSize) return -1;
+            if (array[minSize] > targetValue) return -1;
+            if (array[minSize] == targetValue) return minSize;
+            if (array[maxSize] == targetValue) return maxSize;
 
             int middleValue = (minSize + maxSize) / 2;
-            if (array[middleValue - 1] == targetValue)
-            {
-                return middleValue - 1;
-            }
-            else if (array[middleValue - 1] > targetValue)
-            {
-                return BinarySearchMethod(minSize, middleValue, targetValue, array);
-            }
+            if (array[middleValue - 1] == targetValue) return middleValue - 1;
+            if (array[middleValue - 1] > targetValue) return BinarySearchMethod(minSize, middleValue, targetValue, array);
             return BinarySearchMethod(middleValue, maxSize, targetValue, array);
         }
 
