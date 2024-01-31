@@ -12,7 +12,6 @@ while (value == 0)
     string answer = Console.ReadLine();
 
     Int32.TryParse(answer, out value);
-
     switch (value)
     {
         case 1:
@@ -20,14 +19,16 @@ while (value == 0)
             break;
         case 2:
             Console.Clear();
-            BinarySearch a = new BinarySearch();
-            value = 0;
-            Console.WriteLine("\nPress any key to continue");
-            Console.ReadKey();
+            Bs.BinarySearch();
+            Reset.ResetAfterExecution(ref value);
+            break;
+        case 3:
             Console.Clear();
+
+            Reset.ResetAfterExecution(ref value);
             break;
         default:
-            Console.Clear();
+            Reset.ResetAfterExecution(ref value);
             break;
     }
 }

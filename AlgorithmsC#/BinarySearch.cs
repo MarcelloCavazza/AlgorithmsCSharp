@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsC_
 {
-    public class BinarySearch
+    public static class Bs
     {
 
-        public BinarySearch() {
+        public static void BinarySearch() {
             int[] arr = new int[1000000];
             int arraySize = arr.Length;
             for (int i = 0; i < arraySize; i++)
@@ -30,7 +30,7 @@ namespace AlgorithmsC_
                 $"The Execution time of the program is {watch.ElapsedMilliseconds}ms");
         }
 
-        public int BinarySearchMethod(int minSize, int maxSize, int targetValue, int[] array)
+        public static int BinarySearchMethod(int minSize, int maxSize, int targetValue, int[] array)
         {
             if (minSize >= maxSize) return -1;
             if (array[minSize] > targetValue) return -1;
